@@ -182,10 +182,9 @@ jobs:
         run: apt update && apt -y install openssh-client
       - name: Checkout source code
         uses: actions/checkout@v2
-      - run: |
-          emcc --version
-          ls ../
-          ls ../../
+      - run: emcc --version
+      - run: ls ../../
+      - run: ls ../../../
       - name: Waf Configure
         run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }}
       - name: Waf Build
