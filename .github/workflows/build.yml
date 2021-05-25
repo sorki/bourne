@@ -169,6 +169,7 @@ jobs:
           - container: trzeci/emscripten
             cxx_mkspec: --cxx_mkspec=cxx_emscripten137
             emscripten_path: emscripten_path=../../../emsdk/
+            version: sdk-tag-1.37.0-64bit
             name: Emscripten 1.37
     name: ${{ matrix.config.name }}
     runs-on: [self-hosted, docker]
@@ -177,7 +178,6 @@ jobs:
       options: --user 0:0
       volumes:
         - /home/buildbot/.ssh:/root/.ssh
-      version: sdk-tag-1.37.0-64bit
     steps:
       - name: Install SSH client
         run: apt update && apt -y install openssh-client
