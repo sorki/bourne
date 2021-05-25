@@ -168,7 +168,7 @@ jobs:
         config:
           - container: trzeci/emscripten:sdk-tag-1.37.0-64bit
             cxx_mkspec: --cxx_mkspec=cxx_emscripten137
-            emscripten_path: emscripten_path=../../../emsdk/
+            emscripten_path: emscripten_path=../../../emsdk_portable/emscripten/tag-1.37.0
             name: Emscripten 1.37
     name: ${{ matrix.config.name }}
     runs-on: [self-hosted, docker]
@@ -182,8 +182,6 @@ jobs:
         run: apt update && apt -y install openssh-client
       - name: Checkout source code
         uses: actions/checkout@v2
-      - run: emcc --version
-      - run: ls ../../../emsdk-portable
       - name: Waf Configure
         run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }} ${{ matrix.config.emscripten_path }}
       - name: Waf Build
