@@ -186,7 +186,7 @@ jobs:
           em++ --version
           ls ../../../emsdk/upstream/emscripten
       - name: Waf Configure
-        run: python3 waf configure --waf-tools_checkout=master --git_protocol=git@ ${{ matrix.config.cxx_mkspec }} ${{ matrix.config.emscripten_path }}
+        run: python3 waf configure --waf-tools_checkout=emscripten --git_protocol=git@ ${{ matrix.config.cxx_mkspec }} ${{ matrix.config.emscripten_path }}
       - name: Waf Build
         run: python3 waf
       - name: Waf Test
