@@ -28,6 +28,10 @@ jobs:
         - container: conanio/clang10
           cxx_mkspec: --cxx_mkspec=cxx_clang10_thread_sanitizer_x64
           name: Clang 10 Thread Sanitizer
+        - container: emscripten/emsdk
+          cxx_mkspec: --cxx_mkspec=cxx_emscripten137
+          version: 2.0.21
+          name: Emscripten 2.0.21
     runs-on: [self-hosted, docker]
     name: ${{ matrix.config.name }}
     container:
