@@ -183,7 +183,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - run: |
-          emcc --version
+          em++ --version
           ls ../../../emsdk/upstream/emscripten
       - name: Waf Configure
         run: python3 waf configure --waf-tools_checkout=master --git_protocol=git@ ${{ matrix.config.cxx_mkspec }} ${{ matrix.config.emscripten_path }}
