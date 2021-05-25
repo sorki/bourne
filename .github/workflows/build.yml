@@ -169,6 +169,7 @@ jobs:
           - container: emscripten/emsdk
             cxx_mkspec: --cxx_mkspec=cxx_emscripten137
             version: 2.0.21
+            emscripten_path: emscripten_path="../../../emsdk/"
             name: Emscripten 2.0.21
     name: ${{ matrix.config.name }}
     runs-on: [self-hosted, docker]
@@ -183,9 +184,9 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - run: emcc --version
-      - run: ls ../../../emsdk/emsdk
+      - run: ls ../../../emsdk/
       - name: Waf Configure
-        run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }}
+        run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }} ${{ matrix.config.emscripten_path }}
       - name: Waf Build
         run: python3 waf
       - name: Waf Test
