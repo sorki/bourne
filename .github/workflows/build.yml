@@ -166,7 +166,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - container: trzeci/emscripten/sdk-tag-1.37.0-64bit
+          - container: trzeci/emscripten:sdk-tag-1.37.0-64bit
             cxx_mkspec: --cxx_mkspec=cxx_emscripten137
             emscripten_path: emscripten_path=../../../emsdk/
             name: Emscripten 1.37
