@@ -168,7 +168,7 @@ jobs:
         config:
           - container: emscripten/emsdk:2.0.21
             cxx_mkspec: --cxx_mkspec=cxx_emscripten20
-            emscripten_path: emscripten_path=../../../emsdk/emsdk
+            emscripten_path: emscripten_path=../../../emsdk/upstream/emscripten
             name: Emscripten 2.0
     name: ${{ matrix.config.name }}
     runs-on: [self-hosted, docker]
