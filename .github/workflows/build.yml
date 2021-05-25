@@ -183,8 +183,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - run: emcc --version
-      - run: ls ../../
-      - run: ls ../../../
+      - run: ls ~/emsdk
       - name: Waf Configure
         run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }}
       - name: Waf Build
