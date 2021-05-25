@@ -28,10 +28,6 @@ jobs:
         - container: conanio/clang10
           cxx_mkspec: --cxx_mkspec=cxx_clang10_thread_sanitizer_x64
           name: Clang 10 Thread Sanitizer
-        - container: emscripten/emsdk
-          cxx_mkspec: --cxx_mkspec=cxx_emscripten137
-          version: 2.0.21
-          name: Emscripten 2.0.21
     runs-on: [self-hosted, docker]
     name: ${{ matrix.config.name }}
     container:
@@ -165,3 +161,32 @@ jobs:
           python3 waf
       - name: Valgrind Test
         run: python3 waf --run_tests
+  emscripten:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - container: emscripten/emsdk
+            cxx_mkspec: --cxx_mkspec=cxx_emscripten137
+            version: 2.0.21
+            name: Emscripten 2.0.21
+    name: ${{ matrix.config.name }}
+    runs-on: [self-hosted, docker]
+    container:
+      image: ${{ matrix.config.container }}
+      options: --user 0:0
+      volumes:
+        - /home/buildbot/.ssh:/root/.ssh
+    steps:
+      - name: Install SSH client
+        run: apt update && apt -y install openssh-client
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - run: ls
+      - name: Waf Configure
+        run: python3 waf configure --git_protocol=git@ ${{ matrix.config.cxx_mkspec }}
+      - name: Waf Build
+        run: python3 waf
+      - name: Waf Test
+        run: python3 waf --run_tests
+    
