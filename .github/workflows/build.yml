@@ -177,6 +177,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bourne_tests
-          path: build/linux/test/bourne_tests.tar
+          path: bourne_tests.tar
           retention-days: 5
 
