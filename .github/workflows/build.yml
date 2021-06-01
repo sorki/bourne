@@ -140,7 +140,8 @@ jobs:
           path: ./
       - name: Untar files
         run: |
-          tar -xvf bourne_tests.tar --strip=10 **/*
+          tar -xvf bourne_tests.tar --strip-components=10
+          
       - name: Valgrind Test
         run: valgrind ./bourne_tests
   # NDEBUG compilation
