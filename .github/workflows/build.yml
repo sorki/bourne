@@ -165,7 +165,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Configure
         env:
-          GIT_SSH_COMMAND: "'ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes' }}"
+          GIT_SSH_COMMAND: "ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes"
         run: python3 waf configure --git_protocol=git@
       - name: Build
         run: python3 waf
