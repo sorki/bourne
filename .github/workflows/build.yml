@@ -172,7 +172,7 @@ jobs:
       - name: Build
         run: python3 waf
       - name: Tar files
-        run: tar -czf bourne_tests.tar /build/linux/test/bourne_tests /test/test.json
+        run: tar -czf bourne_tests.tar build/linux/test/bourne_tests test/test.json
       - name: Upload bourne_tests
         uses: actions/upload-artifact@v2
         with:
