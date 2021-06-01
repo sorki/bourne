@@ -140,10 +140,8 @@ jobs:
           path: ./
       - name: Untar files
         run: |
-          cd build/linux/test 
-          tar -xvf ../../../bourne_tests.tar bourne_tests
-          cd test
-          tar -xvf ../bourne_tests.tar test.json
+          tar -xvf bourne_tests.tar --strip=3 build/linux/test/bourne_tests
+          tar -xvf bourne_tests.tar --strip=1 test/test.json
       - name: Valgrind Test
         run: valgrind ./build/linux/test/bourne_tests
   # NDEBUG compilation
@@ -176,7 +174,7 @@ jobs:
       - name: Build
         run: python3 waf
       - name: Tar files
-        run: tar -czf bourne_tests.tar bourne_tests test.json
+        run: tar -czf bourne_tests.tar build/linux/test/bourne_tests test/test.json
       - name: Upload bourne_tests
         uses: actions/upload-artifact@v2
         with:
