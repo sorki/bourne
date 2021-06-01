@@ -131,19 +131,15 @@ jobs:
   valgrind:
     name: Valgrind
     runs-on: [self-hosted, valgrind]
+    needs: linux_build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Configure
-        env:
-          GIT_SSH_COMMAND: "${{ runner.os != 'Linux' && 'ssh' || 'ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes' }}"
-        run: python3 waf configure --git_protocol=git@
-      - name: Build
-        run: |
-          echo "::add-matcher::.github/gcc-problem-matcher.json"
-          python3 waf
+      - name: Download Linux Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: bourne_tests
+          path: ./
       - name: Valgrind Test
-        run: python3 waf --run_tests --run_cmd="valgrind %s"
+        run: valgrind ./bourne_tests
   # NDEBUG compilation
   ndebug:
     name: No Assertions
@@ -161,3 +157,22 @@ jobs:
           python3 waf
       - name: Valgrind Test
         run: python3 waf --run_tests
+  linux_build:
+    name: Linux Build
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure
+        env:
+          GIT_SSH_COMMAND: "'ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes' }}"
+        run: python3 waf configure --git_protocol=git@
+      - name: Build
+        run: python3 waf
+      - name: Upload bourne_tests
+        uses: actions/upload-artifact@v2
+        with:
+          name: bourne_tests
+          path: build/linux/test/bourne_tests
+          retention-days: 5
+
