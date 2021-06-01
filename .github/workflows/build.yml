@@ -138,7 +138,7 @@ jobs:
         with:
           name: bourne_tests
           path: ./
-      - run: ls -la
+      - run: chmod -x ./bourne_tests
       - name: Valgrind Test
         run: valgrind ./bourne_tests
   # NDEBUG compilation
