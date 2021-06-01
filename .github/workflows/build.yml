@@ -141,7 +141,7 @@ jobs:
       - name: Untar files
         run: tar -xvf bourne_tests.tar
       - name: Valgrind Test
-        run: valgrind ./bourne_tests
+        run: valgrind ./build/linux/test/bourne_tests
   # NDEBUG compilation
   ndebug:
     name: No Assertions
