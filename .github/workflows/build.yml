@@ -138,7 +138,8 @@ jobs:
         with:
           name: bourne_tests
           path: ./
-      - run: chmod +x ./bourne_tests
+      - name: Untar files
+        run: tar -xvf bourne_tests.tar
       - name: Valgrind Test
         run: valgrind ./bourne_tests
   # NDEBUG compilation
@@ -170,10 +171,12 @@ jobs:
         run: python3 waf configure --git_protocol=git@
       - name: Build
         run: python3 waf
+      - name: Tar files
+        run: tar -czf bourne_tests.tar /build/linux/test/bourne_tests /test/test.json
       - name: Upload bourne_tests
         uses: actions/upload-artifact@v2
         with:
           name: bourne_tests
-          path: build/linux/test/bourne_tests
+          path: build/linux/test/bourne_tests.tar
           retention-days: 5
 
