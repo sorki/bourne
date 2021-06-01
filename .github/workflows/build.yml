@@ -139,7 +139,7 @@ jobs:
           name: bourne_tests
           path: ./
       - name: Untar files
-        run: tar -xvf bourne_tests.tar
+        run: tar -xvf bourne_tests.tar ./bourne_tests ./test.json 
       - name: Valgrind Test
         run: valgrind ./build/linux/test/bourne_tests
   # NDEBUG compilation
