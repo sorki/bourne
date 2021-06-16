@@ -7,7 +7,7 @@ bourne
     
 .. image:: https://raw.githubusercontent.com/steinwurf/bourne/master/bourne.gif
 
-A simple c++11 json reader and writer.
+A simple c++14 json reader and writer.
 
 .. contents:: Table of Contents:
    :local:
