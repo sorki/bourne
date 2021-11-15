@@ -3,6 +3,8 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
+#define _GLIBCXX_USE_C99
+
 #include "json.hpp"
 
 #include "class_type.hpp"

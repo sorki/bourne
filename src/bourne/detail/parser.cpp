@@ -3,6 +3,8 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
+#define _GLIBCXX_USE_C99
+
 #include "parser.hpp"
 #include "../error.hpp"
 #include "../json.hpp"
